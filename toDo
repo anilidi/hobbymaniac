@@ -1,0 +1,40 @@
+gorevler = []
+
+while True:
+    print("\n===== Görev Listesi =====")
+    print("1. Görev Ekle")
+    print("2. Görevleri Göster")
+    print("3. Görevi Tamamlandı Olarak İşaretle")
+    print("4. Çıkış")
+
+    secim = input("Seçiminizi girin: ")
+
+    if secim == '1':
+        print()
+        adet_gorevler = int(input("Kaç tane görev eklemek istiyorsunuz: "))
+            
+        for i in range(adet_gorevler):
+            gorev = input("Görevi Girin: ")
+            gorevler.append({"gorev": gorev, "tamamlandı": False})
+            print("Görev Eklendi!")
+
+    elif secim == '2':
+        print("Görevler:")
+        for index, gorev in enumerate(gorevler):
+            durum = "Tamamlandı" if gorev["tamamlandı"] else "Tamamlanmadı"
+            print(f"{index + 1}. {gorev['gorev']} - {durum}")
+
+    elif secim == '3':
+        gorev_index = int(input("Tamamlandı olarak işaretlemek istediğiniz görevi seçin: ")) - 1
+        if 0 <= gorev_index < len(gorevler):
+            gorevler[gorev_index]["tamamlandı"] = True
+            print("Gorev tamamlandı olarak işaretlendi!")
+        else:
+            print("Geçersiz görev numarası.")
+
+    elif secim == '4':
+        print("Yapılacaklar Listesinden çıkış yapıldı.")
+        break
+
+    else:
+        print("geçersiz seçim. Lütfen tekrar deneyin.")
